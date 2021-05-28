@@ -1,0 +1,21 @@
+<div class="note__author">
+  <strong>{{ note?.author }}</strong>
+</div>
+
+<div class="note__created-date">
+  {{ note?.createDate | date:"YYYY-MM-dd"}}
+</div>
+
+<div class="note__title" *ngIf="note?.title">
+  "{{ note.title }}"
+</div>
+
+<div class="note__text">
+  {{ note?.text }}
+</div>
+
+<div class="note__tags">
+  <ul>
+    <li *ngFor="let tag of note?.tags">{{tag}}</li>
+  </ul>
+</div>

@@ -1,0 +1,42 @@
+[
+  {
+    "author": "Jan Kowalski",
+    "title": "Historia pewnego oseska",
+    "text": "Lorem ipsum dolor sit amet...",
+    "tags": [
+      "historia", "biografia", "dla dzieci"
+    ]
+  },
+  {
+    "author": "Piotr Nowak",
+    "title": "Gwiezdne blastery: Hegemonia Trycytów",
+    "text": "Lorem ipsum dolor sit amet...",
+    "tags": [
+      "science-fiction", "literatura polska", "dla młodzieży"
+    ]
+  },
+  {
+    "author": "Monokles",
+    "title": "Ontologia rzeczy pierwszych",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "tags": [
+      "filozofia", "antyk", "myśl"
+    ]
+  },
+    {
+    "author": "Orletta Mirango",
+    "title": "Voices",
+    "text": "Lorem ipsum dolor sit amet...",
+    "tags": [
+      "kryminał"
+    ]
+  },
+  {
+    "author": "Lidia van Kohl",
+    "title": "Memologia",
+    "text": "Lorem ipsum dolor sit amet...",
+    "tags": [
+      "nauka", "psychologia", "neuronauki"
+    ]
+  }
+]
