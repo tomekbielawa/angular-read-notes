@@ -8,8 +8,8 @@
     <strong>{{ note?.author }}</strong>
   </div>
 
-  <div class="note__created-date">
-    {{ note?.createDate | date:"YYYY-MM-dd"}}
+  <div class="note__created-date" *ngIf="note?.createDate">
+    {{ note.createDate | date:"YYYY-MM-dd"}}
   </div>
 
   <div class="note__title" *ngIf="note?.title">
