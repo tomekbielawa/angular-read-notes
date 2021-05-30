@@ -1,1 +1,8 @@
-<app-item [note]="note" *ngFor="let note of notes"></app-item>
+<!-- TODO import clipping.txt -->
+<div class="importer">
+  <input type="file"/>
+</div>
+
+<div class="notes">
+  <app-item [note]="note" *ngFor="let note of notes"></app-item>
+</div>

@@ -1,11 +1,15 @@
-div[class^='note__'] {
+.note {
+  padding: 20px;
+}
+
+.note div[class^='note__'] {
   margin-bottom: 10px;
 }
 
-.note__text {
+.note .note__text {
   font-size: 0.8em;
 }
 
-.note__tags {
+.note .note__tags {
   font-style: italic;
 }

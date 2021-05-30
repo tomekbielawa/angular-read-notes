@@ -1,8 +1,9 @@
 export class Note {
-  title: String;
-  author: String;
-  text: String;
-  tags: Array<String>;
+  id: string;
+  title: string;
+  author: string;
+  text: string;
+  tags: Array<string>;
   important = false;
   createDate = new Date();
 }

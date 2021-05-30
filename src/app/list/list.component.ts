@@ -15,4 +15,7 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.notes = this.notesService.notes;
   }
+
+  // @TODO
+  importNotesFromClippingFile() {}
 }

@@ -1,6 +1,11 @@
-app-item {
+.notes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.notes app-item {
   width: 300px;
   margin: 20px;
-  padding: 20px;
   border: solid 1px lightblue;
 }
