@@ -1,8 +1,8 @@
-<div *ngIf="noteId && canNavigateToPreviousNote()">
+<div *ngIf="note && noteId && canNavigateToPreviousNote()">
   <button (click)="navigateToPreviousNote()">Previous</button>
 </div>
 
-<div class="note">
+<div class="note" *ngIf="note">
 
   <div class="note__author">
     <strong>{{ note?.author }}</strong>
@@ -28,6 +28,10 @@
 
 </div>
 
-<div *ngIf="noteId && canNavigateToNextNote()">
+<div class="note" *ngIf="!note">
+  BRAK notatki
+</div>
+
+<div *ngIf="note && noteId && canNavigateToNextNote()">
   <button (click)="navigateToNextNote()">Next</button>
 </div>

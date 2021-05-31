@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
   }
 
   // @TODO - refaktor: wyniesc z tego komponenetu
-  importNotesFromClippingFile(element) {
+  importNotesFromClippingFile(element: any) {
     const file = element.target.files,
       fileReader = new FileReader();
 

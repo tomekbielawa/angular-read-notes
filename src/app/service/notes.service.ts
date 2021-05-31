@@ -6,7 +6,7 @@ import * as sampleNotes from './../data/notes.json';
 @Injectable()
 export class NotesService {
   private _notes: Array<NoteIterface>;
-  private _currentNote: NoteIterface;
+  private _currentNote: NoteIterface | null;
   private _currentNoteIndex = 0;
 
   constructor() {
@@ -29,7 +29,10 @@ export class NotesService {
   }
 
   getNote(id: string): NoteIterface {
-    this.currentNote = this.notes.find(note => note.id === id) || null;
+    const _note = this.notes.find(note => note && note.id === id);
+    if (_note) {
+      this.currentNote = _note;
+    }
 
     return this.currentNote;
   }
