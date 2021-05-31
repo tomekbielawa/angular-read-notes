@@ -27,14 +27,14 @@ export class ClippingsImporterComponent implements OnInit {
   }
 
   reloadClippings() {
-    const titleAndAuthorRegexp = /(.+) \((.+)\)\r*\n(.+)\r*\n(.+)*\r*\n(.+)*/gi;
+    const clippingNoteRegexp = /(.+) \((.+)\)\r*\n(.+)\r*\n(.+)*\r*\n(.+)*/gi;
 
     this.clippings.items = this.clippings.file.split('==========');
 
     this.clippings.items.forEach(clipping => {
       let clippingData;
 
-      while ((clippingData = titleAndAuthorRegexp.exec(clipping)) !== null) {
+      while ((clippingData = clippingNoteRegexp.exec(clipping)) !== null) {
         const newNote = new Note();
         newNote.title = clippingData[1] || '';
         newNote.author = clippingData[2] || '';
