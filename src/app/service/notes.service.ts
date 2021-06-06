@@ -80,9 +80,7 @@ export class NotesService {
     return new Promise((resolve, reject) => {
       try {
         const newNote = new Note();
-        newNote.author = note.author;
-        newNote.title = note.title;
-        newNote.text = note.text;
+        Object.assign(newNote, note);
 
         this.addNote(newNote);
 
