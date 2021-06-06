@@ -71,4 +71,25 @@ export class NotesService {
   getNextNote(): NoteIterface {
     return this.notes[this._currentNoteIndex + 1] || null;
   }
+
+  addNote(note: NoteIterface) {
+    this.notes.push(note);
+  }
+
+  createNewNote(note: NoteIterface): Promise<NoteIterface> {
+    return new Promise((resolve, reject) => {
+      try {
+        const newNote = new Note();
+        newNote.author = note.author;
+        newNote.title = note.title;
+        newNote.text = note.text;
+
+        this.addNote(newNote);
+
+        resolve(newNote);
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
 }

@@ -1,0 +1,36 @@
+<div class="form-container">
+  <form [formGroup]="itemForm" (submit)="onSubmit()">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Author</mat-label>
+      <input required
+            placeholder="Author"
+            aria-label="Author"
+            matInput
+            formControlName="author">
+      <mat-error>
+        <ng-container>This field is required.</ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Title</mat-label>
+      <input required
+            matInput
+            placeholder="Title"
+            value=""
+            formControlName="title">
+      <mat-error>
+        <ng-container>This field is required.</ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Text</mat-label>
+      <textarea
+            matInput
+            formControlName="text"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </form>
+</div>

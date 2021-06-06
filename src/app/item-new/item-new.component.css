@@ -1,0 +1,14 @@
+.form-container {
+  width: 80vw;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.form-field {
+  display: flex;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  width: 100%;
+}
