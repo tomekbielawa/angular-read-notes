@@ -13,11 +13,15 @@ export class NotesService {
     this.setDefaultNotes();
   }
 
-  public setDefaultNotes() {
+  private setDefaultNotes() {
     this._notes =
       sampleNotes[Object.keys(sampleNotes).find(key => key === 'default')].map(
         sampleNote => sampleNote as NoteIterface
       ) || new Array<NoteIterface>();
+
+      if(this._notes) {
+        this.currentNote = this._notes[0];
+      }
   }
 
   get notes(): Array<NoteIterface> {
