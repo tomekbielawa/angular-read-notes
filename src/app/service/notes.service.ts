@@ -13,7 +13,7 @@ export class NotesService {
     this.setDefaultNotes();
   }
 
-  private setDefaultNotes() {
+  public setDefaultNotes() {
     this._notes =
       sampleNotes[Object.keys(sampleNotes).find(key => key === 'default')].map(
         sampleNote => sampleNote as NoteIterface
