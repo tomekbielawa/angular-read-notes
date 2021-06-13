@@ -20,6 +20,7 @@ export class NotesService {
         ...sampleNotes[Object.keys(sampleNotes).find(key => key === 'default')]
       ].map(sampleNote => {
         const tags = sampleNote.tags.map(tag => {
+          if (typeof tag !== 'string') return tag;
           return { name: tag } as Tag;
         });
         sampleNote.tags = tags;
