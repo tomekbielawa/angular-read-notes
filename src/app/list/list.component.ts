@@ -12,34 +12,28 @@ import { NotesService } from '../service/notes.service';
 export class ListComponent implements OnInit {
   notes: Array<Note>;
   pageEvent: PageEvent = new PageEvent();
+  pagesLength = 0;
   pageIndex = 0;
   pageSize = 2;
-  pagesLength = 0;
 
   constructor(private notesService: NotesService) {}
 
   ngOnInit() {
     this.pagesLength = this.notesService.notesLength;
 
-    this.notes = this.notesService.getNotesPaginated(
-      this.pageIndex,
-      this.pageSize
-    );
-
-    console.log('this.notes', this.notes);
+    this.getData();
   }
 
-  getData(event: PageEvent) {
-    console.log('pageIndex?', this.pageEvent.pageIndex);
-    console.log('pageSize', this.pageEvent.pageSize);
-    console.log(event.pageIndex);
+  getData() {
+    this.notes = this.notesService.getNotesPaginated(this.pageIndex, this.pageSize);
+  }
 
-    this.notes = this.notesService.getNotesPaginated(
-      this.pageEvent.pageIndex,
-      this.pageEvent.pageSize
-    );
+  getPaginatedData(event: PageEvent) {
+    const { pageIndex, pageSize } = event;
+    this.pageIndex = pageIndex;
+    this.pageSize = pageSize;
 
-    console.log('this.notes', this.notes);
+    this.notes = this.notesService.getNotesPaginated(pageIndex, pageSize);
 
     return event;
   }
