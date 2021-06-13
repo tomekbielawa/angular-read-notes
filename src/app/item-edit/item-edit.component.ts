@@ -20,7 +20,6 @@ import { Tag } from '../interface/tag-interface';
 export class ItemEditComponent implements OnInit {
   itemForm: FormGroup;
   item: Note;
-  tagList: Tag[] = new Array<Tag>();
   visible = true;
   selectable = true;
   removable = true;
@@ -34,7 +33,6 @@ export class ItemEditComponent implements OnInit {
 
   ngOnInit() {
     this.item = this.noteService.getNote(this.route.snapshot.params.id);
-    this.tagList = this.item.tags;
 
     this.setForm();
   }
@@ -65,18 +63,22 @@ export class ItemEditComponent implements OnInit {
   }
 
   addTag(event: MatChipInputEvent) {
-    const value = (event.value || '').trim();
+    const formTags = this.itemForm.get('tags').value,
+      value = (event.value || '').trim();
 
-    if (value) {
-      this.tagList.push({ name: value });
+    if (formTags && value) {
+      formTags.push({ name: value });
     }
+
+    event.input.value = '';
   }
 
   removeTag(tag: Tag) {
-    const index = this.tagList.indexOf(tag);
+    const formTags = this.itemForm.get('tags').value,
+      index = formTags && formTags.indexOf(tag);
 
     if (index >= 0) {
-      this.tagList.splice(index, 1);
+      formTags.splice(index, 1);
     }
   }
 
