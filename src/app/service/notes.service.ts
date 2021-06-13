@@ -1,3 +1,4 @@
+import { Tag } from '@angular/compiler/src/i18n/serializers/xml_helper';
 import { Injectable } from '@angular/core';
 
 import { Note } from '../class/note';
@@ -15,9 +16,16 @@ export class NotesService {
 
   private setDefaultNotes() {
     this._notes =
-      sampleNotes[Object.keys(sampleNotes).find(key => key === 'default')].map(
-        sampleNote => sampleNote as Note
-      ) || new Array<Note>();
+      [
+        ...sampleNotes[Object.keys(sampleNotes).find(key => key === 'default')]
+      ].map(sampleNote => {
+        const tags = sampleNote.tags.map(tag => {
+          return { name: tag } as Tag;
+        });
+        sampleNote.tags = tags;
+
+        return sampleNote as Note;
+      }) || new Array<Note>();
 
     if (this._notes) {
       this.currentNote = this._notes[0];

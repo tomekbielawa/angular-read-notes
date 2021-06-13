@@ -1,8 +1,12 @@
 <div *ngIf="note && noteId && canNavigateToPreviousNote()">
-  <button (click)="navigateToPreviousNote()">Previous</button>
+  <button matButton (click)="navigateToPreviousNote()">Previous</button>
 </div>
 
 <div class="note" *ngIf="note">
+
+  <div class="note__edit">
+    <a routerLink="/notes/{{ note?.id }}/edit">Edit</a>
+  </div>
 
   <div class="note__author">
     <strong>{{ note?.author }}</strong>
@@ -22,7 +26,7 @@
 
   <div class="note__tags">
     <ul>
-      <li *ngFor="let tag of note?.tags">{{tag}}</li>
+      <li *ngFor="let tag of note?.tags">{{tag.name}}</li>
     </ul>
   </div>
 

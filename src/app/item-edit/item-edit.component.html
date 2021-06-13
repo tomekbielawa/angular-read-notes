@@ -1,5 +1,7 @@
+<a routerLink="/notes">Back to the list</a>
+
 <div class="form-container">
-  <form [formGroup]="itemForm">
+  <form [formGroup]="itemForm" (submit)="onSubmit()">
     <mat-form-field appearance="outline">
       <mat-label>Author</mat-label>
       <input matInput formControlName="author" placeholder="Author's name and surname" required />
@@ -30,6 +32,23 @@
       placeholder="Some text"></textarea>
     </mat-form-field>
 
-    <button type=" submit" mat-raised-button color="primary">Save</button>
+    <mat-form-field appearance="outline">
+      <mat-label>Tags</mat-label>
+      <mat-chip-list #tags>
+        <mat-chip *ngFor="let tag of itemForm.get('tags').value" [selectable]="selectable" [removable]="removable"
+          (removed)="removeTag(tag)">
+          {{ tag.name }}
+          <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+        </mat-chip>
+        <input placeholder="New tag..."
+           [matChipInputFor]="tags"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="addTag($event)">
+      </mat-chip-list>
+    </mat-form-field>
+
+
+    <button type="submit" mat-raised-button color="primary">Save</button>
   </form>
 </div>
