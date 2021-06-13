@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit
+} from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -11,6 +16,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { NotesService } from '../service/notes.service';
 import { Note } from '../class/note';
 import { Tag } from '../interface/tag-interface';
+import { censorshipValidator } from '../validators/censorship.validator';
+import { duplicatesValidator } from '../validators/duplicates.validator';
 
 @Component({
   selector: 'app-item-edit',
@@ -38,18 +45,22 @@ export class ItemEditComponent implements OnInit {
   }
 
   setForm() {
-    this.itemForm = new FormGroup({
-      id: new FormControl(),
-      author: new FormControl(null, [
-        Validators.compose([Validators.required, Validators.minLength(5)])
-      ]),
-      title: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(5)
-      ]),
-      text: new FormControl(),
-      tags: new FormControl()
-    });
+    this.itemForm = new FormGroup(
+      {
+        id: new FormControl(),
+        author: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(5)
+        ]),
+        title: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(5)
+        ]),
+        text: new FormControl(),
+        tags: new FormControl(null, [duplicatesValidator()])
+      },
+      { validators: [censorshipValidator] }
+    );
 
     this.itemForm.setValue(this.item);
   }
@@ -71,6 +82,8 @@ export class ItemEditComponent implements OnInit {
     }
 
     event.input.value = '';
+
+    this.findIfTagsHasDuplicates();
   }
 
   removeTag(tag: Tag) {
@@ -80,13 +93,22 @@ export class ItemEditComponent implements OnInit {
     if (index >= 0) {
       formTags.splice(index, 1);
     }
+
+    this.findIfTagsHasDuplicates();
+  }
+
+  findIfTagsHasDuplicates() {
+    const formTags = this.itemForm.get('tags'),
+      fieldErrors = duplicatesValidator()(formTags);
+
+    formTags.setErrors(fieldErrors || null);
   }
 
   // @TODO
   onSubmit() {
     if (this.itemForm.valid) {
       // do some funny stuff
-      console.log(this.itemForm.value.tags);
+      console.log('Form is valid with:', this.itemForm.value.tags);
     }
   }
 }
