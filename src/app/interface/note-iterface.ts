@@ -4,6 +4,6 @@ export interface NoteIterface {
   author: string;
   text: string;
   tags: Array<string>;
-  important: Boolean;
+  important: boolean;
   createDate: Date;
 }

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
+
 import { Note } from '../class/note';
-import { NoteIterface } from '../interface/note-iterface';
 import * as sampleNotes from './../data/notes.json';
 
 @Injectable()
 export class NotesService {
-  private _notes: Array<NoteIterface>;
-  private _currentNote: NoteIterface | null;
+  private _notes: Array<Note>;
+  private _currentNote: Note | null;
   private _currentNoteIndex = 0;
 
   constructor() {
@@ -16,23 +16,31 @@ export class NotesService {
   private setDefaultNotes() {
     this._notes =
       sampleNotes[Object.keys(sampleNotes).find(key => key === 'default')].map(
-        sampleNote => sampleNote as NoteIterface
-      ) || new Array<NoteIterface>();
+        sampleNote => sampleNote as Note
+      ) || new Array<Note>();
 
-      if(this._notes) {
-        this.currentNote = this._notes[0];
-      }
+    if (this._notes) {
+      this.currentNote = this._notes[0];
+    }
   }
 
-  get notes(): Array<NoteIterface> {
+  get notes(): Array<Note> {
     return this._notes;
   }
 
-  set notes(newNotes: Array<NoteIterface>) {
+  get notesLength(): number {
+    return this._notes.length || 0;
+  }
+
+  set notes(newNotes: Array<Note>) {
     this._notes = newNotes;
   }
 
-  getNote(id: string): NoteIterface {
+  getNotesPaginated(index = 0, pagesLength = 2): Array<Note> {
+    return this._notes.slice(index * pagesLength, (index + 1) * pagesLength);
+  }
+
+  getNote(id: string): Note {
     const _note = this.notes.find(note => note && note.id === id);
     if (_note) {
       this.currentNote = _note;
@@ -41,11 +49,11 @@ export class NotesService {
     return this.currentNote;
   }
 
-  get currentNote(): NoteIterface {
+  get currentNote(): Note {
     return this._currentNote;
   }
 
-  set currentNote(note: NoteIterface) {
+  set currentNote(note: Note) {
     this._currentNote = note;
     this._currentNoteIndex = this.notes.findIndex(
       _note => _note.id === note.id
@@ -60,7 +68,7 @@ export class NotesService {
     }
   }
 
-  getPreviousNote(): NoteIterface {
+  getPreviousNote(): Note {
     return this.notes[this._currentNoteIndex - 1] || null;
   }
 
@@ -72,15 +80,15 @@ export class NotesService {
     }
   }
 
-  getNextNote(): NoteIterface {
+  getNextNote(): Note {
     return this.notes[this._currentNoteIndex + 1] || null;
   }
 
-  addNote(note: NoteIterface) {
+  addNote(note: Note) {
     this.notes.push(note);
   }
 
-  createNewNote(note: NoteIterface): Promise<NoteIterface> {
+  createNewNote(note: Note): Promise<Note> {
     return new Promise((resolve, reject) => {
       try {
         const newNote = new Note();

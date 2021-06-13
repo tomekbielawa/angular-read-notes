@@ -1,0 +1,23 @@
+.form-container {
+  width: 80vw;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.form-container form {
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.form-container form .form-field {
+  display: flex;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  width: 100%;
+}

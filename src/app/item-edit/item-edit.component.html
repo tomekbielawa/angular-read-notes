@@ -1,0 +1,35 @@
+<div class="form-container">
+  <form [formGroup]="itemForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Author</mat-label>
+      <input matInput formControlName="author" placeholder="Author's name and surname" required />
+      <mat-error>
+        <ng-container *ngIf="author.invalid && (author.touched || author.dirty)">
+          <div *ngIf="author.errors.required">Author is required</div>
+          <div *ngIf="author.errors.minlength">Min. 5 letters</div>
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" placeholder="Title" />
+      <mat-error>
+        <div *ngIf="title.invalid && (title.touched || title.dirty)">
+          <div *ngIf="title.errors.required">This field is required.</div>
+          <div *ngIf="title.errors.minlength">Min. 5 letters.</div>
+        </div>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Text</mat-label>
+      <textarea
+      matInput
+      formControlName="text"
+      placeholder="Some text"></textarea>
+    </mat-form-field>
+
+    <button type=" submit" mat-raised-button color="primary">Save</button>
+  </form>
+</div>

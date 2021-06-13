@@ -12,6 +12,7 @@ import { ItemNewComponent } from './item-new/item-new.component';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { ItemEditComponent } from './item-edit/item-edit.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     ListComponent,
     ItemComponent,
     ClippingsImporterComponent,
-    ItemNewComponent
+    ItemNewComponent,
+    ItemEditComponent
   ],
   bootstrap: [AppComponent],
   providers: [

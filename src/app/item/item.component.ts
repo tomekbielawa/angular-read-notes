@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { NoteIterface } from '../interface/note-iterface';
+import { Note } from '../class/note';
 import { NotesService } from '../service/notes.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { NotesService } from '../service/notes.service';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
-  @Input() note: NoteIterface;
+  @Input() note: Note;
   noteId: string;
 
   constructor(
