@@ -23,6 +23,7 @@ export class NotesService {
           if (typeof tag !== 'string') return tag;
           return { name: tag } as Tag;
         });
+
         sampleNote.tags = tags;
 
         return sampleNote as Note;

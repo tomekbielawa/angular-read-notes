@@ -25,14 +25,17 @@ export class ListComponent implements OnInit {
   }
 
   getData() {
-    this.notes = this.notesService.getNotesPaginated(this.pageIndex, this.pageSize);
+    this.notes = this.notesService.getNotesPaginated(
+      this.pageIndex,
+      this.pageSize
+    );
   }
 
   getPaginatedData(event: PageEvent) {
     const { pageIndex, pageSize } = event;
+
     this.pageIndex = pageIndex;
     this.pageSize = pageSize;
-
     this.notes = this.notesService.getNotesPaginated(pageIndex, pageSize);
 
     return event;
